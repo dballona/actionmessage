@@ -2,30 +2,30 @@ require 'active_support/core_ext/string/inflections'
 require 'active_support/core_ext/module/anonymous'
 
 module ActionMessage
-	class Base < AbstractController::Base
+  class Base < AbstractController::Base
 
-		abstract!
+    abstract!
 
-		include AbstractController::Rendering
+    include AbstractController::Rendering
     include AbstractController::Logger
     include AbstractController::Callbacks
     include AbstractController::Caching
 
     include ActionView::Layouts
 
-	  class << self
+    class << self
 
-	  	class_attribute :default_params
-    	self.default_params = {
-    		adapter: {
-    			name: :test,
-    			credentials: {}
-    		},
-    		mime_version: "1.0",
-	      charset:      "UTF-8"
-    	}
+      class_attribute :default_params
+      self.default_params = {
+        adapter: {
+          name: :test,
+          credentials: {}
+        },
+        mime_version: "1.0",
+        charset:      "UTF-8"
+      }
 
-	  	# Sets the defaults through app configuration:
+      # Sets the defaults through app configuration:
       #
       #     config.action_message.default(from: "+11231231234")
       #
@@ -46,17 +46,17 @@ module ActionMessage
       attr_writer :mailer_name
       alias :controller_path :mailer_name
 
-	  	protected
-		    def method_missing(method_name, *args) # :nodoc:
-		      if action_methods.include?(method_name.to_s)
-	          MessageDelivery.new(self, method_name, *args)
-	        else
-	          super
-	        end
-		    end
-	  end
+      protected
+        def method_missing(method_name, *args) # :nodoc:
+          if action_methods.include?(method_name.to_s)
+            MessageDelivery.new(self, method_name, *args)
+          else
+            super
+          end
+        end
+    end
 
-	  attr_internal :message
+    attr_internal :message
     attr_accessor :template_name
 
     def initialize
@@ -77,5 +77,5 @@ module ActionMessage
 
       message
     end
-	end
+  end
 end

@@ -1,6 +1,6 @@
 # ActionMessage
 
-This is a pet project – a microset of ActionMailer for working with SMS messages.
+This is a pet project – an ActionMailer heavily-inspired gem for working with SMS/Text messages.
 Pull requests are more than welcome!
 
 ## Usage

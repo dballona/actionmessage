@@ -9,9 +9,9 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Diego Ballona"]
   spec.email         = ["root@dballona.com"]
 
-  spec.summary       = "123123"
-  spec.description   = "123123"
-  spec.homepage      = "http://googl.com"
+  spec.summary       = "ActionMailer heavily-inspired gem to handle SMS/Text Messages"
+  spec.description   = "ActionMailer heavily-inspired gem to handle SMS/Text Messages"
+  spec.homepage      = "http://dballona.com"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or

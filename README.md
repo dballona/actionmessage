@@ -7,20 +7,19 @@ Pull requests are more than welcome!
 
 Install it using bundler
 
-```
+```sh
 # Gemfile
 gem 'actionmessage'
 ```
 
 or just require it:
-
-```
+```sh
 gem install actionmessage
 require 'action_message'
 ```
 
+If you're using Rails, place this on your environment file or application.rb
 ```ruby
-# If you're using Rails, place this on your environment file or application.rb
 ActionMessage::Base.default_options = {
 	from: "number to send from in international format, e.g.: +11231231234", 
 	adapter: { 
@@ -31,20 +30,22 @@ ActionMessage::Base.default_options = {
 		}
 	}
 }
+```
 
-# Put this for example, under app/messages/merchant_message.rb
-
+Put this for example, under app/messages/merchant_message.rb
+```ruby
 class MerchantMessage < ActionMessage::Base
 	def send_welcome_sms(name)
 		@name = name
 		sms(to: "+5531982726767")
 	end
 end
-
-# Define your views under app/views/merchant_message/send_welcome_sms.text.erb
-Welcome, <%= @name %>!!!
 ```
 
+Define your views under app/views/merchant_message/send_welcome_sms.text.erb
+```html
+Welcome, <%= @name %>!!!
+```
 
 TODO:
 

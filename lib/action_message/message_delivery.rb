@@ -3,7 +3,7 @@ module ActionMessage
     attr_reader :message_class, :action, :args, :adapter
 
     def initialize(message_class, action, *args)
-      @message_class, @action, @args = message_class, action, *args
+      @message_class, @action, @args = message_class, action, args
     end
 
     def deliver_now

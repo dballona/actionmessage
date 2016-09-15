@@ -1,23 +1,18 @@
 module ActionMessage
   class Message
-    attr_accessor :headers, :action, :args, :body, :to
+    attr_accessor :headers, :action, :args, :body, :to, :debug
 
-    VIEW_PATHS = %w(app/views app/views/messages app/views/mailers app/views/application app/views/layouts)
-
-    def initialize(params = {})
-      @headers = params[:headers]
-      @body = params[:body]
-      @to = params[:to]
+    def initialize
       @adapter = Adapters.adapter
     end
 
-    def deliver
-      puts "Sending message \"#{body}\" to number #{to}"
-      @adapter.send_message(body, to: to)
+    def debug?
+      !!@debug
     end
 
-    def view_paths
-      VIEW_PATHS
+    def deliver
+      puts "Sending message \"#{body}\" to number #{to}" # TODO: Switch to a decent logger
+      @adapter.send_message(body, to: to) unless debug?
     end
   end
 end

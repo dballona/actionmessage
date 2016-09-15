@@ -9,7 +9,6 @@ module ActionMessage
     include AbstractController::Rendering
     include AbstractController::Logger
     include AbstractController::Callbacks
-    include AbstractController::Caching
 
     include ActionView::Layouts
 
@@ -46,6 +45,16 @@ module ActionMessage
       attr_writer :mailer_name
       alias :controller_path :mailer_name
 
+      def base_paths
+        %w(
+          app/views 
+          app/views/messages 
+          app/views/mailers 
+          app/views/application 
+          app/views/layouts
+        ).freeze
+      end
+
       protected
         def method_missing(method_name, *args) # :nodoc:
           if action_methods.include?(method_name.to_s)
@@ -67,12 +76,14 @@ module ActionMessage
 
     def sms(params = {}, &block)
       return message if @_message_was_called && params[:to].blank? && !block
+      
       @_message_was_called = true
 
-      lookup_context.view_paths = message.view_paths
+      lookup_context.view_paths = self.class.base_paths
 
       message.headers = self.class.default_params.slice(:charset, :mime_version)
       message.to = params[:to]
+      message.debug = params[:debug]
       message.body = render(template_name)
 
       message

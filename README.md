@@ -20,7 +20,9 @@ require 'action_message'
 
 If you're using Rails, place this on your environment file or application.rb
 ```ruby
-ActionMessage::Base.default_options = {
+require 'action_message/railtie'
+
+config.action_message = {
 	from: "number to send from in international format, e.g.: +11231231234", 
 	adapter: { 
 		name: :twilio,
@@ -42,7 +44,7 @@ class MerchantMessage < ActionMessage::Base
 end
 ```
 
-Define your views under app/views/merchant_message/send_welcome_sms.text.erb
+Define your views under your view path, such as: app/views/merchant_message/send_welcome_sms.text.erb
 ```html
 Welcome, <%= @name %>!!!
 ```
@@ -53,7 +55,6 @@ TODO:
 - Add background processing (deliver_later);
 - Log instrumentation with ActiveSupport;
 - Add generators;
-- Add a Railtie;
 - Add delivery methods;
 - Add test helpers; 
 - Add more adapters;

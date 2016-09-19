@@ -4,6 +4,8 @@ This is a pet project – an ActionMailer heavily-inspired gem for working with 
 Pull requests are more than welcome!
 
 [![Build Status](https://travis-ci.org/dballona/actionmessage.svg?branch=master)](https://travis-ci.org/dballona/actionmessage)
+[![codecov](https://codecov.io/gh/dballona/actionmessage/branch/master/graph/badge.svg)](https://codecov.io/gh/dballona/actionmessage)
+
 
 ## Usage
 

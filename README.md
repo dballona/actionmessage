@@ -51,7 +51,6 @@ Welcome, <%= @name %>!
 
 Pending implementations:
 
-- Add background processing (deliver_later);
 - Log instrumentation with ActiveSupport;
 - Add generators;
 - Add test helpers for deliveries count, matching message.body, message.to, etc; 

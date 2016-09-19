@@ -5,15 +5,9 @@ module ActionMessage
         super(params)
       end
 
-      def client
-        @client ||= OpenStruct.new
-      end
-
       def send_message(body, params={})
-        raise ArgumentError, 'you should include a receipient for sending messages' unless params[:to].present?
-
-        @to = params[:to]
-        puts "Sending message to #{@to}"
+        super(body, params)
+        puts "Sending message to #{params[:to]}"
       end
     end
   end

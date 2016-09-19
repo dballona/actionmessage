@@ -34,9 +34,9 @@ config.action_message = {
 }
 ```
 
-Put this for example, under app/messages/merchant_message.rb
+Put this for example, under app/messages/welcome_message.rb
 ```ruby
-class MerchantMessage < ActionMessage::Base
+class WelcomeMessage < ActionMessage::Base
 	def send_welcome_sms(name)
 		@name = name
 		sms(to: "+5531982726767")
@@ -44,7 +44,7 @@ class MerchantMessage < ActionMessage::Base
 end
 ```
 
-Define your views under your view path, such as: app/views/merchant_message/send_welcome_sms.text.erb
+Define your views under your view path, such as: app/views/welcome_message/send_welcome_sms.text.erb
 ```html
 Welcome, <%= @name %>!
 ```

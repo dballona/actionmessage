@@ -3,9 +3,10 @@
 ActionMessage is heavily-inspired on ActionMailer gem, for sending SMS/Text messages like we do for e-mails on Rails.
 Pull requests are more than welcome!
 
+[![Gem Version](https://badge.fury.io/rb/actionmessage.svg)](https://badge.fury.io/rb/actionmessage)
 [![Build Status](https://travis-ci.org/dballona/actionmessage.svg?branch=master)](https://travis-ci.org/dballona/actionmessage)
 [![codecov](https://codecov.io/gh/dballona/actionmessage/branch/master/graph/badge.svg)](https://codecov.io/gh/dballona/actionmessage)
-
+[![Code Climate](https://codeclimate.com/github/dballona/actionmessage/badges/gpa.svg)](https://codeclimate.com/github/dballona/actionmessage)
 
 ## Usage
 
@@ -47,7 +48,7 @@ Define your views under your view path, such as: app/views/merchant_message/send
 Welcome, <%= @name %>!
 ```
 
-TODO:
+Pending implementations:
 
 - Add background processing (deliver_later);
 - Log instrumentation with ActiveSupport;

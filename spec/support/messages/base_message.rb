@@ -11,4 +11,9 @@ class BaseMessage < ActionMessage::Base
     @company_name = company_name
     sms(to: '+11231231234')
   end
+
+  def welcome_without_to(person_name)
+    @person_name = person_name
+    sms
+  end
 end

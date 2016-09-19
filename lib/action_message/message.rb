@@ -15,7 +15,7 @@ module ActionMessage
 
     def deliver
       unless debug?
-        # TODO: add logger 'Sendimg message from "number" to "number"'
+        # add logger 'Sendimg message from "number" to "number"'
         adapter.send_message(body, to: to)
       end
     end

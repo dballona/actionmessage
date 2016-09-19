@@ -3,7 +3,7 @@ require 'action_message/adapters/test'
 require 'action_message/adapters/twilio'
 
 module ActionMessage
-	module Adapters
+  module Adapters
     class << self
       def adapter_klass
         @@adapter_klass ||= adapter_params[:name].to_s.capitalize

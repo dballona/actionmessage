@@ -7,7 +7,6 @@ module ActionMessage
     config.eager_load_namespaces << ActionMessage
 
     initializer "action_message.set_configs" do |app|
-      paths   = app.config.paths
       options = app.config.action_message
 
       ActiveSupport.on_load(:action_message) do

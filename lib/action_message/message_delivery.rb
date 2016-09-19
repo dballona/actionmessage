@@ -1,6 +1,6 @@
 module ActionMessage
   class MessageDelivery
-    attr_reader :message_class, :action, :args, :adapter
+    attr_reader :message_class, :action, :args
 
     def initialize(message_class, action, *args)
       @message_class, @action, @args = message_class, action, args

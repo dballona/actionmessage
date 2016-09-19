@@ -2,7 +2,7 @@ module ActionMessage
   include ActionMessage::Adapters
 
   class Message
-    attr_accessor :headers, :action, :args, :body, :to, :debug
+    attr_accessor :action, :args, :body, :to, :debug
     attr_reader :adapter
 
     def initialize
@@ -14,8 +14,10 @@ module ActionMessage
     end
 
     def deliver
-      puts "Sending message \"#{body}\" to number #{to}" # TODO: Switch to a decent logger
-      adapter.send_message(body, to: to) unless debug?
+      unless debug?
+        # TODO: add logger 'Sendimg message from "number" to "number"'
+        adapter.send_message(body, to: to)
+      end
     end
   end
 end

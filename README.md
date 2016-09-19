@@ -1,6 +1,6 @@
 # ActionMessage
 
-This is a pet project – an ActionMailer heavily-inspired gem for working with SMS/Text messages.
+ActionMessage is heavily-inspired on ActionMailer gem, for sending SMS/Text messages like we do for e-mails on Rails.
 Pull requests are more than welcome!
 
 [![Build Status](https://travis-ci.org/dballona/actionmessage.svg?branch=master)](https://travis-ci.org/dballona/actionmessage)
@@ -9,17 +9,11 @@ Pull requests are more than welcome!
 
 ## Usage
 
-Install it using bundler
+Install it using bundler:
 
-```sh
+```ruby
 # Gemfile
 gem 'actionmessage'
-```
-
-or just require it:
-```sh
-gem install actionmessage
-require 'action_message'
 ```
 
 If you're using Rails, place this on your environment file or application.rb
@@ -50,15 +44,13 @@ end
 
 Define your views under your view path, such as: app/views/merchant_message/send_welcome_sms.text.erb
 ```html
-Welcome, <%= @name %>!!!
+Welcome, <%= @name %>!
 ```
 
 TODO:
 
-- Add tests to what we've got already;
 - Add background processing (deliver_later);
 - Log instrumentation with ActiveSupport;
 - Add generators;
-- Add delivery methods;
-- Add test helpers; 
-- Add more adapters;
+- Add test helpers for deliveries count, matching message.body, message.to, etc; 
+- Add more adapters such as Plivo;

@@ -1,6 +1,7 @@
 # ActionMessage
 
-ActionMessage is heavily-inspired on ActionMailer gem, for sending SMS/Text messages like we do for e-mails on Rails.
+ActionMessage is heavily-inspired on ActionMailer.
+It's a gem for sending SMS/Text messages like we do for sending e-mails on ActionMailer.
 Pull requests are more than welcome!
 
 [![Gem Version](https://badge.fury.io/rb/actionmessage.svg)](https://badge.fury.io/rb/actionmessage)

@@ -18,7 +18,6 @@ module ActionMessage
       end
 
       def send_message(body, params={})
-        raise ArgumentError, 'you should include a receipient for sending messages' unless params[:to].present?
         super(body, params)
 
         sms = {

@@ -37,9 +37,9 @@ config.action_message = {
 Put this for example, under app/messages/welcome_message.rb
 ```ruby
 class WelcomeMessage < ActionMessage::Base
-	def send_welcome_sms(name)
+	def send_welcome_sms(name, phone_number_to_send_message)
 		@name = name
-		sms(to: "+5531982726767")
+		sms(to: phone_number_to_send_message)
 	end
 end
 ```

@@ -19,6 +19,7 @@ gem 'actionmessage'
 ```
 
 If you're using Rails, place this on your environment file or application.rb
+
 ```ruby
 require 'action_message/railtie'
 
@@ -34,7 +35,10 @@ config.action_message = {
 }
 ```
 
-Put this for example, under app/messages/welcome_message.rb
+In order to generate your message class, you can either place this code
+under app/messages/welcome_message.rb or just use our generators by running
+the following command: `rails g message Welcome send_welcome_sms`
+
 ```ruby
 class WelcomeMessage < ActionMessage::Base
 	def send_welcome_sms(name, phone_number_to_send_message)
@@ -45,13 +49,7 @@ end
 ```
 
 Define your views under your view path, such as: app/views/welcome_message/send_welcome_sms.text.erb
+
 ```html
 Welcome, <%= @name %>!
 ```
-
-Pending implementations:
-
-- Log instrumentation with ActiveSupport;
-- Add generators;
-- Add test helpers for deliveries count, matching message.body, message.to, etc; 
-- Add more adapters such as Plivo;

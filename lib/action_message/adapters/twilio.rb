@@ -14,7 +14,7 @@ module ActionMessage
       end
 
       def client
-        @client = ::Twilio::REST::Client.new(@account_sid, @auth_token, @account_sid, :faraday)
+        @client = ::Twilio::REST::Client.new(@account_sid, @auth_token)
         @client.http_client.adapter = :faraday
         @client
       end

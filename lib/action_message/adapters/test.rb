@@ -9,6 +9,12 @@ module ActionMessage
         super(body, params)
         puts "Sending message to #{params[:to]}"
       end
+
+      class << self
+        def status_callback_mapping(params)
+          params
+        end
+      end
     end
   end
 end

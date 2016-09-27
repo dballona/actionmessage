@@ -10,8 +10,16 @@ module ActionMessage
         @from = pick_sender
       end
 
+      def status_callback
+        @status_callback ||= @params[:status_callback].presence || ActionMessage::Base.options[:status_callback]
+      end
+
+      def status_callback?
+        status_callback.present?
+      end
+
       def senders
-        @senders ||= @params[:from].present? ? @params[:from] : ActionMessage::Base.default_params[:from]
+        @senders ||= @params[:from].present? ? @params[:from] : ActionMessage::Base.options[:from]
       end
 
       private

@@ -5,19 +5,19 @@ describe ActionMessage::Adapters do
     subject { ActionMessage::Adapters }
 
     it '.adapter_klass' do
-      klass_name = ActionMessage::Base.default_params[:adapter][:name].to_s.capitalize
+      klass_name = ActionMessage::Base.options[:adapter][:name].to_s.capitalize
       expect(subject.adapter_klass).to eq(klass_name)
       expect(subject.class_variable_get(:@@adapter_klass)).to eq(klass_name)
     end
 
     it '.adapter_params' do
-      params = ActionMessage::Base.default_params[:adapter]
+      params = ActionMessage::Base.options[:adapter]
       expect(subject.adapter_params).to eq(params)
       expect(subject.class_variable_get(:@@adapter_params)).to eq(params)
     end
 
     it '.adapter_credentials' do
-      params = ActionMessage::Base.default_params[:adapter][:credentials]
+      params = ActionMessage::Base.options[:adapter][:credentials]
       expect(subject.adapter_credentials).to eq(params)
       expect(subject.class_variable_get(:@@adapter_credentials)).to eq(params)
     end

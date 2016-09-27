@@ -13,7 +13,7 @@ module Rails
 
       protected
         def file_name
-          @_file_name ||= super.gsub(/_messag/i, '')
+          @_file_name ||= super.gsub(/_message/i, '')
         end
     end
   end

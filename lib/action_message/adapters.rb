@@ -10,7 +10,7 @@ module ActionMessage
       end
 
       def adapter_params
-        @@adapter_params ||= ActionMessage::Base.default_params[:adapter]
+        @@adapter_params ||= ActionMessage::Base.options[:adapter]
       end
 
       def adapter_credentials

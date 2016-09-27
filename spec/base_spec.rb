@@ -19,8 +19,8 @@ describe ActionMessage::Base do
   end
 
   context 'class methods' do
-    it '.default_params' do
-      expect(subject.class.default_params).to eq({
+    it '.options' do
+      expect(subject.class.options).to eq({
         adapter: {
           name: :test,
           credentials: {}
@@ -28,15 +28,11 @@ describe ActionMessage::Base do
       })
     end
 
-    describe '.default' do
-      it 'should merge values passed to .default_params' do
-        expect(subject.class.default_params[:adapter]).to eq({name: :test, credentials: {}})
-        subject.class.default(adapter: { name: :twilio, credentials: {a: :b} })
-        expect(subject.class.default_params[:adapter]).to eq({name: :twilio, credentials: {a: :b}})
-      end
-
-      it 'should be aliased with .default_options=' do
-        expect(subject.class.method(:default)).to eq(subject.class.method(:default_options=))
+    describe '.default_options=' do
+      it 'should merge values passed to .options' do
+        expect(subject.class.options[:adapter]).to eq({name: :test, credentials: {}})
+        subject.class.default_options = { adapter: { name: :twilio, credentials: {a: :b} } }
+        expect(subject.class.options[:adapter]).to eq({name: :twilio, credentials: {a: :b}})
       end
     end
 

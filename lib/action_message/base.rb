@@ -14,27 +14,18 @@ module ActionMessage
 
     class << self
 
-      class_attribute :default_params
-      self.default_params = {
+      class_attribute :options
+      self.options = {
         adapter: {
           name: :test,
           credentials: {}
         }
       }
 
-      # Sets the defaults through app configuration:
-      # config.action_message.default(from: "+11231231234")
-      #
-      # Aliased by ::default_options=
-      #
-      def default(value = nil)
-        self.default_params = default_params.merge(value).freeze if value
-        default_params
+      def default_options=(params = {})
+        self.options = options.merge(params).freeze
+        options
       end
-      # Allows to set defaults through app configuration:
-      # config.action_message = { charset: 'ISO-8859-1' }
-      #
-      alias :default_options= :default
 
       def base_paths
         %w(

@@ -1,0 +1,13 @@
+Description:
+============
+    Creates a tracker class for recording message adapter callbacks and message
+    delivery status changes between queued, sent and delivered. This classes
+    are also used for reporting purposes.
+
+    This generates a message class in app/models, using your ORM preferences.
+
+Example:
+========
+    rails generate tracker Sms
+    creates a Sms class under app/models/sms.rb
+

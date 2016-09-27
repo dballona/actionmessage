@@ -30,14 +30,14 @@ describe ActionMessage::Adapters::Base do
       let(:config_sender) { '+19999999999' }
 
       it 'prioritizes params provided sender' do
-        allow(ActionMessage::Base).to receive_message_chain(:default_params, :[], :from).and_return(config_sender)
+        allow(ActionMessage::Base).to receive_message_chain(:options, :[], :from).and_return(config_sender)
         subject.instance_variable_set(:@params, subject.instance_variable_get(:@params).merge(from: sender))
 
         expect(subject.senders).to eq(sender)
       end
 
       it 'uses configured sender if no sender is sent via params' do
-        expect(ActionMessage::Base).to receive_message_chain(:default_params, :[]).and_return(config_sender)
+        expect(ActionMessage::Base).to receive_message_chain(:options, :[]).and_return(config_sender)
         expect(subject.senders).to eq(config_sender)
       end
     end

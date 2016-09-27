@@ -27,8 +27,22 @@ module ActionMessage
         }
         
         sms.merge!(media_url: params[:media_url]) if params[:media_url].present?
+        sms.merge!(status_callback: status_callback) if status_callback?
 
         client.account.messages.create(sms)
+      end
+
+
+      class << self
+        def status_callback_mapping(params)
+          {
+            adapter_id: params[:MessageSid],
+            from: params[:From],
+            to: params[:To],
+            body: params[:Body],
+            status: params[:MessageStatus]
+          }
+        end
       end
     end
   end

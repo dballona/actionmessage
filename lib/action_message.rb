@@ -4,7 +4,9 @@ require 'action_message/adapters'
 require 'action_message/base'
 require 'action_message/message'
 require 'action_message/message_delivery'
+require 'action_message/tracker'
 require 'action_message/version'
+require 'action_message/web'
 
 require 'active_support/rails'
 

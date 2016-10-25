@@ -53,7 +53,7 @@ module ActionMessage
     end
 
     attr_internal :message
-    attr_accessor :template_name
+    attr_accessor :template_name, :template_path
 
     def initialize
       super
@@ -64,16 +64,22 @@ module ActionMessage
     def sms(params = {}, &block)
       raise ArgumentError, 'You need to provide at least a receipient' if params[:to].blank?
       return message if @_message_was_called && !block
+
+      self.template_name = params[:template_name].presence || template_name
+      self.template_path = params[:template_path].presence || template_path
       
       @_message_was_called = true
-
-      lookup_context.view_paths = (lookup_context.view_paths.to_a + self.class.base_paths).uniq
+      lookup_context.view_paths = (lookup_context.view_paths.to_a + self.class.base_paths).flatten.uniq
 
       message.to = params[:to]
       message.debug = params[:debug]
-      message.body = render(template_name)
+      message.body = render(full_template_path)
 
       message
+    end
+
+    def full_template_path
+      [template_path, template_name].join('/')
     end
   end
 end

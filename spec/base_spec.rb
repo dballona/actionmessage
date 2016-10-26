@@ -7,9 +7,9 @@ describe ActionMessage::Base do
 
   context 'included modules' do
     %w(
-      AbstractController::Rendering 
-      AbstractController::Logger 
-      AbstractController::Callbacks 
+      AbstractController::Rendering
+      AbstractController::Logger
+      AbstractController::Callbacks
       ActionView::Layouts
     ).each do |module_name|
       it "includes #{module_name}" do
@@ -42,13 +42,13 @@ describe ActionMessage::Base do
 
     it '.base_paths' do
       base_paths = %w(
-        app/views 
-        app/views/messages 
-        app/views/mailers 
-        app/views/application 
+        app/views
+        app/views/messages
+        app/views/mailers
+        app/views/application
         app/views/layouts
       )
-      
+
       expect(subject.class.base_paths).to eq(base_paths)
     end
 
@@ -106,6 +106,10 @@ describe ActionMessage::Base do
       it 'sets message #body' do
         expect(subject).to receive(:render).and_return('Message body')
         expect(subject.sms(to: to).body).to eq('Message body')
+      end
+
+      it 'sets message #body from parameter' do
+        expect(subject.sms(to: to, body: 'Hardcoded message').body).to eq('Hardcoded message')
       end
     end
   end

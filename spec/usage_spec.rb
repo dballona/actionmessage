@@ -21,5 +21,11 @@ describe BaseMessage do
         message_delivery.send(:processed_sms).send(:welcome_without_to, 'Diego')
       }.to raise_error(ArgumentError, 'You need to provide at least a receipient')
     end
+
+    it 'when we are sending a message with a hardcoded body' do
+      message_delivery = BaseMessage.welcome_with_hardcoded_body('Welcome!')
+      message = message_delivery.send(:processed_sms).send(:welcome_with_hardcoded_body, 'Welcome!')
+      expect(message.body).to eq('Welcome!')
+    end
   end
 end

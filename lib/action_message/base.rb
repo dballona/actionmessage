@@ -38,10 +38,10 @@ module ActionMessage
 
       def base_paths
         %w(
-          app/views 
-          app/views/messages 
-          app/views/mailers 
-          app/views/application 
+          app/views
+          app/views/messages
+          app/views/mailers
+          app/views/application
           app/views/layouts
         ).freeze
       end
@@ -67,13 +67,13 @@ module ActionMessage
 
       self.template_name = params[:template_name].presence || template_name
       self.template_path = params[:template_path].presence || template_path
-      
+
       @_message_was_called = true
       lookup_context.view_paths = (lookup_context.view_paths.to_a + self.class.base_paths).flatten.uniq
 
       message.to = params[:to]
       message.debug = params[:debug]
-      message.body = render(full_template_path)
+      message.body = params[:body] || render(full_template_path)
 
       message
     end

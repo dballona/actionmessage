@@ -16,4 +16,8 @@ class BaseMessage < ActionMessage::Base
     @person_name = person_name
     sms
   end
+
+  def welcome_with_hardcoded_body(body)
+    sms(to: '+11231231234', body: body)
+  end
 end

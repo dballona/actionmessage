@@ -21,6 +21,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'actionpack', '>= 4.0.0'
   spec.add_dependency 'actionview', '>= 4.0.0'
+  spec.add_dependency 'activejob', '>= 4.0.0'
   spec.add_dependency 'twilio-ruby', '>= 5.0.0.rc17'
   
   spec.add_development_dependency 'bundler', '~> 1.11'

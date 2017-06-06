@@ -38,6 +38,13 @@ describe ActionMessage::MessageDelivery do
       expect(subject.deliver_now).to eq('Sent!')
     end
 
+    it '#deliver_later' do
+      job = double
+      expect(ActionMessage::DeliveryJob).to receive(:set).and_return(job)
+      expect(job).to receive(:perform_later).with(message_class.to_s, action.to_s, 'deliver_now', *args)
+      subject.deliver_later
+    end
+
     it '#processed_sms' do
       message = subject.send(:processed_sms)
       expect(message).to be_a(BaseMessage)

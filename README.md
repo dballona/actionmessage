@@ -24,14 +24,14 @@ If you're using Rails, place this on your environment file or application.rb
 require 'action_message/railtie'
 
 config.action_message = {
-	from: "number to send from in international format, e.g.: +11231231234", 
-	adapter: { 
-		name: :twilio,
-		credentials: {
-			account_sid: 'MY TWILIO ACCOUNT SID'.freeze,
-			auth_token: 'MY AUTH TOKEN'.freeze
-		}
-	}
+  from: "number to send from in international format, e.g.: +11231231234", 
+  adapter: { 
+    name: :twilio,
+    credentials: {
+      account_sid: 'MY TWILIO ACCOUNT SID'.freeze,
+      auth_token: 'MY AUTH TOKEN'.freeze
+    }
+  }
 }
 ```
 
@@ -41,10 +41,10 @@ the following command: `rails g message Welcome send_welcome_sms`
 
 ```ruby
 class WelcomeMessage < ActionMessage::Base
-	def send_welcome_sms(name, phone_number_to_send_message)
-		@name = name
-		sms(to: phone_number_to_send_message)
-	end
+  def send_welcome_sms(name, phone_number_to_send_message)
+    @name = name
+    sms(to: phone_number_to_send_message)
+  end
 end
 ```
 
@@ -52,4 +52,17 @@ Define your views under your view path, such as: app/views/welcome_message/send_
 
 ```html
 Welcome, <%= @name %>!
+```
+
+And to send is really simple!
+
+```rb
+name = 'John Doe'
+phone = '+11231231234'
+
+# To send right away:
+WelcomeMessage.send_welcome_sms(name, phone).deliver_now
+
+# To send through a background job
+WelcomeMessage.send_welcome_sms(name, phone).deliver_later
 ```

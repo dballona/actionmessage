@@ -38,6 +38,13 @@ describe ActionMessage::Message do
         expect(subject.deliver).to be_nil
       end
 
+      it 'doesnt call send_message when interceptor registered' do
+        subject.to = '+123456789'
+        ActionMessage::Interceptor.register(to: subject.to)
+        expect_any_instance_of(ActionMessage::Adapters::Test).not_to receive(:send_message)
+        expect(subject.deliver).to be_nil
+      end
+
       it 'call send_message if debug = false' do
         subject.debug = false
         expect_any_instance_of(ActionMessage::Adapters::Test).to receive(:send_message).and_return('called')

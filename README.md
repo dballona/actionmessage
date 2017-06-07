@@ -9,7 +9,7 @@ Pull requests are more than welcome!
 [![codecov](https://codecov.io/gh/dballona/actionmessage/branch/master/graph/badge.svg)](https://codecov.io/gh/dballona/actionmessage)
 [![Code Climate](https://codeclimate.com/github/dballona/actionmessage/badges/gpa.svg)](https://codeclimate.com/github/dballona/actionmessage)
 
-## Usage
+## Setup
 
 Install it using bundler:
 
@@ -35,6 +35,8 @@ config.action_message = {
 }
 ```
 
+## Usage
+
 In order to generate your message class, you can either place this code
 under app/messages/welcome_message.rb or just use our generators by running
 the following command: `rails g message Welcome send_welcome_sms`
@@ -56,7 +58,7 @@ Welcome, <%= @name %>!
 
 And to send is really simple!
 
-```rb
+```ruby
 name = 'John Doe'
 phone = '+11231231234'
 
@@ -65,4 +67,9 @@ WelcomeMessage.send_welcome_sms(name, phone).deliver_now
 
 # To send through a background job
 WelcomeMessage.send_welcome_sms(name, phone).deliver_later
+```
+
+If you want to prevent sending messages to a specific number place this on an initializer:
+```ruby
+ActionMessage::Interceptor.register(to: 'number I want to prevent sending messages')
 ```

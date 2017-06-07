@@ -69,7 +69,17 @@ WelcomeMessage.send_welcome_sms(name, phone).deliver_now
 WelcomeMessage.send_welcome_sms(name, phone).deliver_later
 ```
 
-If you want to prevent sending messages to a specific number place this on an initializer:
+## Interceptors
+
+In order to prevent sending messages to a specific number or containing any specific text on it's body you can use Interceptors:
+
 ```ruby
+# You can use strings (exact comparison)
 ActionMessage::Interceptor.register(to: 'number I want to prevent sending messages')
+
+# Regular expressions
+ActionMessage::Interceptor.register(body: /something innapropriate/i)
+
+# Pass Multiple arguments on the same call
+ActionMessage::Interceptor.register(to: '+11231231234', body: /anything/i)
 ```

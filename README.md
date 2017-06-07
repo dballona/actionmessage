@@ -24,7 +24,11 @@ If you're using Rails, place this on your environment file or application.rb
 require 'action_message/railtie'
 
 config.action_message = {
-  from: "number to send from in international format, e.g.: +11231231234", 
+  # sender in international format you can also pass an array and it will
+  # shuffle and randomly pick one number.
+  from: "+11231231234",
+
+  # adapter information. Right now we only support Twilio.
   adapter: { 
     name: :twilio,
     credentials: {
@@ -47,10 +51,24 @@ class WelcomeMessage < ActionMessage::Base
     @name = name
     sms(to: phone_number_to_send_message)
   end
+
+  # Inline body example, body parameter has preference compared
+  # to a text.erb template.
+  def welcome_with_inline_body(name, phone_number_to_send_message)
+    @name = name
+    sms(to: phone_number_to_send_message, body: 'Inline body!')
+  end
+
+  # While on development environment, you can use debug: true to
+  # prevent sending SMS and spending funds on your Twilio account.
+  def welcome_with_debug_mode(name, phone_number_to_send_message)
+    @name = name
+    sms(to: phone_number_to_send_message, debug: true)
+  end
 end
 ```
 
-Define your views under your view path, such as: app/views/welcome_message/send_welcome_sms.text.erb
+Define your views under your view path, such as: `app/views/welcome_message/send_welcome_sms.text.erb`
 
 ```html
 Welcome, <%= @name %>!
@@ -67,6 +85,7 @@ WelcomeMessage.send_welcome_sms(name, phone).deliver_now
 
 # To send through a background job
 WelcomeMessage.send_welcome_sms(name, phone).deliver_later
+
 ```
 
 ## Interceptors

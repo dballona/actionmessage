@@ -27,14 +27,14 @@ describe ActionMessage::Adapters::Test do
 
       it 'when no media_url' do
         sms = { to: to, from: from, body: body  }
-        expect(subject.client).to receive_message_chain(:account, :messages, :create).with(sms)
+        expect(subject.client).to receive_message_chain(:api, :account, :messages, :create).with(sms)
         subject.send_message(body, to: to)
       end
 
       it 'when media_url present' do
         media_url = 'http://goo.gl/123123'
         sms = { to: to, from: from, body: body, media_url: media_url  }
-        expect(subject.client).to receive_message_chain(:account, :messages, :create).with(sms)
+        expect(subject.client).to receive_message_chain(:api, :account, :messages, :create).with(sms)
         subject.send_message(body, to: to, media_url: media_url)
       end
     end

@@ -28,7 +28,7 @@ module ActionMessage
         
         sms.merge!(media_url: params[:media_url]) if params[:media_url].present?
 
-        client.account.messages.create(sms)
+        client.api.account.messages.create(sms)
       end
     end
   end
